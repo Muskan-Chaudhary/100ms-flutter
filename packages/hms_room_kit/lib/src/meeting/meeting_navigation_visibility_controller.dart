@@ -28,11 +28,11 @@ class MeetingNavigationVisibilityController extends ChangeNotifier {
 
   ///This method starts a timer for 5 seconds and then hides the buttons
   void startTimerToHideButtons() {
-    _isTimerActive = true;
-    Timer(const Duration(seconds: 5), () {
-      showControls = false;
-      _isTimerActive = false;
-      notifyListeners();
-    });
+    // _isTimerActive = true;
+    // Timer(const Duration(seconds: 5), () {
+    //   showControls = false;
+    //   _isTimerActive = false;
+    //   notifyListeners();
+    // });
   }
 }
