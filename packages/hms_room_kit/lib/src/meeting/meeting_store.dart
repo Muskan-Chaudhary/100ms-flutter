@@ -826,7 +826,10 @@ class MeetingStore extends ChangeNotifier
   void onJoin({required HMSRoom room}) async {
     log("onJoin-> room: ${room.toString()}");
     isMeetingStarted = true;
-    switchAudioOutput(audioDevice: HMSAudioDevice.EARPIECE);
+
+    if (Constant.prebuiltOptions?.roomType == "AudioRoom") {
+      switchAudioOutput(audioDevice: HMSAudioDevice.EARPIECE);
+    }
 
     hmsRoom = room;
     if (room.hmshlsStreamingState?.state == HMSStreamingState.started) {

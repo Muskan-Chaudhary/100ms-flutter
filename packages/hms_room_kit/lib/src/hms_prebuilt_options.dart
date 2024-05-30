@@ -33,6 +33,8 @@ class HMSPrebuiltOptions {
   ///Default value is true
   final bool enableNoiseCancellation;
 
+  final String? roomType;
+
   ///[HMSPrebuiltOptions] is a class that is used to pass the options to the prebuilt
   HMSPrebuiltOptions(
       {this.userName,
@@ -40,5 +42,6 @@ class HMSPrebuiltOptions {
       this.endPoints,
       this.debugInfo = false,
       this.iOSScreenshareConfig,
-      this.enableNoiseCancellation = false});
+      this.enableNoiseCancellation = false,
+      this.roomType});
 }
