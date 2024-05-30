@@ -18,6 +18,7 @@ import 'package:hms_room_kit/src/enums/meeting_mode.dart';
 import 'package:hms_room_kit/src/meeting/meeting_store.dart';
 import 'package:hms_room_kit/src/widgets/bottom_sheets/app_utilities_bottom_sheet.dart';
 import 'package:hms_room_kit/src/widgets/common_widgets/hms_embedded_button.dart';
+import 'package:hmssdk_flutter/hmssdk_flutter.dart';
 
 ///This renders the meeting bottom navigation bar
 ///It contains the leave, mic, camera, chat and menu buttons
@@ -247,8 +248,33 @@ class _MeetingBottomNavigationBarState
                                   );
                                 }),
 
-                          ///Menu Button
+                          //Speaker Button
+                          if (Constant.prebuiltOptions?.roomType == "AudioRoom")
+                            Selector<MeetingStore,
+                                    Tuple2<HMSAudioDevice?, bool>>(
+                                selector: (_, meetingStore) => Tuple2(
+                                    meetingStore.currentAudioOutputDevice,
+                                    meetingStore.isSpeakerOn),
+                                builder: (_, data, __) {
+                                  return HMSEmbeddedButton(
+                                      onTap: () {
+                                        context
+                                            .read<MeetingStore>()
+                                            .toggleSpeaker();
+                                      },
+                                      onColor: HMSThemeColors.backgroundDim,
+                                      isActive: true,
+                                      child: SvgPicture.asset(
+                                        'packages/hms_room_kit/lib/src/assets/icons/${!data.item2 ? "speaker_state_off" : "speaker_state_on"}.svg',
+                                        colorFilter: ColorFilter.mode(
+                                            HMSThemeColors
+                                                .onSurfaceHighEmphasis,
+                                            BlendMode.srcIn),
+                                        fit: BoxFit.scaleDown,
+                                      ));
+                                }),
 
+                          ///Menu Button
                           if (Constant.prebuiltOptions?.roomType ==
                               "LiveStreamingRoom")
                             HMSEmbeddedButton(
