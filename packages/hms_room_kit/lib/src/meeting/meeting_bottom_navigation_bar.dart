@@ -258,9 +258,19 @@ class _MeetingBottomNavigationBarState
                                 builder: (_, data, __) {
                                   return HMSEmbeddedButton(
                                       onTap: () {
-                                        context
-                                            .read<MeetingStore>()
-                                            .toggleSpeaker();
+                                        if (!data.item2) {
+                                          context
+                                              .read<MeetingStore>()
+                                              .switchAudioOutput(
+                                                  audioDevice: HMSAudioDevice
+                                                      .SPEAKER_PHONE);
+                                        } else {
+                                          context
+                                              .read<MeetingStore>()
+                                              .switchAudioOutput(
+                                                  audioDevice:
+                                                      HMSAudioDevice.EARPIECE);
+                                        }
                                       },
                                       onColor: HMSThemeColors.backgroundDim,
                                       isActive: true,
