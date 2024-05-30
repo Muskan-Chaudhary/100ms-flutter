@@ -54,7 +54,7 @@ class _MeetingPageState extends State<MeetingPage> {
     super.initState();
     checkAudioState();
     _visibilityController = MeetingNavigationVisibilityController();
-    _visibilityController!.startTimerToHideButtons();
+    // _visibilityController!.startTimerToHideButtons();
   }
 
   void checkAudioState() async {

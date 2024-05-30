@@ -16,7 +16,6 @@ import 'package:hms_room_kit/src/widgets/common_widgets/live_badge.dart';
 import 'package:hms_room_kit/hms_room_kit.dart';
 import 'package:hms_room_kit/src/layout_api/hms_room_layout.dart';
 import 'package:hms_room_kit/src/meeting/meeting_store.dart';
-import 'package:hms_room_kit/src/widgets/bottom_sheets/audio_settings_bottom_sheet.dart';
 import 'package:hms_room_kit/src/widgets/common_widgets/hms_embedded_button.dart';
 
 ///This widget is used to show the header of the meeting screen
@@ -269,9 +268,9 @@ class _MeetingHeaderState extends State<MeetingHeader> {
                                       )
                                     : const SizedBox();
                               }),
-                          const SizedBox(
-                            width: 16,
-                          ),
+                          // const SizedBox(
+                          //   width: 16,
+                          // ),
 
                           ///This renders the audio device selection button
                           ///If the role is allowed to publish audio, we render the audio device selection button
