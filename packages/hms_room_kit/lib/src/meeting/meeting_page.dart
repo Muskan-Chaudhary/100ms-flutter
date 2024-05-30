@@ -294,45 +294,45 @@ class _MeetingPageState extends State<MeetingPage> {
                                             }
                                             return const SizedBox();
                                           }),
-                                      // Selector<MeetingStore, bool>(
-                                      //     selector: (_, meetingStore) =>
-                                      //         meetingStore
-                                      //             .showAudioDeviceChangePopup,
-                                      //     builder: (_,
-                                      //         showAudioDeviceChangePopup, __) {
-                                      //       if (showAudioDeviceChangePopup) {
-                                      //         context
-                                      //                 .read<MeetingStore>()
-                                      //                 .showAudioDeviceChangePopup =
-                                      //             false;
-                                      //         WidgetsBinding.instance
-                                      //             .addPostFrameCallback((_) {
-                                      //           showDialog(
-                                      //               context: context,
-                                      //               builder: (_) =>
-                                      //                   AudioDeviceChangeDialog(
-                                      //                     currentAudioDevice: context
-                                      //                         .read<
-                                      //                             MeetingStore>()
-                                      //                         .currentAudioOutputDevice!,
-                                      //                     audioDevicesList: context
-                                      //                         .read<
-                                      //                             MeetingStore>()
-                                      //                         .availableAudioOutputDevices,
-                                      //                     changeAudioDevice:
-                                      //                         (audioDevice) {
-                                      //                       context
-                                      //                           .read<
-                                      //                               MeetingStore>()
-                                      //                           .switchAudioOutput(
-                                      //                               audioDevice:
-                                      //                                   audioDevice);
-                                      //                     },
-                                      //                   ));
-                                      //         });
-                                      //       }
-                                      //       return const SizedBox();
-                                      //     }),
+                                      Selector<MeetingStore, bool>(
+                                          selector: (_, meetingStore) =>
+                                              meetingStore
+                                                  .showAudioDeviceChangePopup,
+                                          builder: (_,
+                                              showAudioDeviceChangePopup, __) {
+                                            if (showAudioDeviceChangePopup) {
+                                              context
+                                                      .read<MeetingStore>()
+                                                      .showAudioDeviceChangePopup =
+                                                  false;
+                                              WidgetsBinding.instance
+                                                  .addPostFrameCallback((_) {
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (_) =>
+                                                        AudioDeviceChangeDialog(
+                                                          currentAudioDevice: context
+                                                              .read<
+                                                                  MeetingStore>()
+                                                              .currentAudioOutputDevice!,
+                                                          audioDevicesList: context
+                                                              .read<
+                                                                  MeetingStore>()
+                                                              .availableAudioOutputDevices,
+                                                          changeAudioDevice:
+                                                              (audioDevice) {
+                                                            context
+                                                                .read<
+                                                                    MeetingStore>()
+                                                                .switchAudioOutput(
+                                                                    audioDevice:
+                                                                        audioDevice);
+                                                          },
+                                                        ));
+                                              });
+                                            }
+                                            return const SizedBox();
+                                          }),
                                       Selector<MeetingStore,
                                               Tuple2<List<HMSToastModel>, int>>(
                                           selector: (_, meetingStore) => Tuple2(
