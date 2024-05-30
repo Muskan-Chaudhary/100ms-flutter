@@ -276,35 +276,35 @@ class _MeetingHeaderState extends State<MeetingHeader> {
                           ///This renders the audio device selection button
                           ///If the role is allowed to publish audio, we render the audio device selection button
                           ///else we render an empty SizedBox
-                          Selector<MeetingStore, Tuple2<HMSAudioDevice?, bool>>(
-                              selector: (_, meetingStore) => Tuple2(
-                                  meetingStore.currentAudioOutputDevice,
-                                  meetingStore.isSpeakerOn),
-                              builder: (_, data, __) {
-                                return HMSEmbeddedButton(
-                                    onTap: () {
-                                      showModalBottomSheet(
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          context: context,
-                                          builder: (ctx) =>
-                                              ChangeNotifierProvider.value(
-                                                  value: context
-                                                      .read<MeetingStore>(),
-                                                  child:
-                                                      const AudioSettingsBottomSheet()));
-                                    },
-                                    onColor: HMSThemeColors.backgroundDim,
-                                    isActive: true,
-                                    child: SvgPicture.asset(
-                                      'packages/hms_room_kit/lib/src/assets/icons/${!data.item2 ? "speaker_state_off" : Utilities.getAudioDeviceIconName(data.item1)}.svg',
-                                      colorFilter: ColorFilter.mode(
-                                          HMSThemeColors.onSurfaceHighEmphasis,
-                                          BlendMode.srcIn),
-                                      fit: BoxFit.scaleDown,
-                                      semanticsLabel: "settings_button",
-                                    ));
-                              }),
+                          // Selector<MeetingStore, Tuple2<HMSAudioDevice?, bool>>(
+                          //     selector: (_, meetingStore) => Tuple2(
+                          //         meetingStore.currentAudioOutputDevice,
+                          //         meetingStore.isSpeakerOn),
+                          //     builder: (_, data, __) {
+                          //       return HMSEmbeddedButton(
+                          //           onTap: () {
+                          //             showModalBottomSheet(
+                          //                 isScrollControlled: true,
+                          //                 backgroundColor: Colors.transparent,
+                          //                 context: context,
+                          //                 builder: (ctx) =>
+                          //                     ChangeNotifierProvider.value(
+                          //                         value: context
+                          //                             .read<MeetingStore>(),
+                          //                         child:
+                          //                             const AudioSettingsBottomSheet()));
+                          //           },
+                          //           onColor: HMSThemeColors.backgroundDim,
+                          //           isActive: true,
+                          //           child: SvgPicture.asset(
+                          //             'packages/hms_room_kit/lib/src/assets/icons/${!data.item2 ? "speaker_state_off" : Utilities.getAudioDeviceIconName(data.item1)}.svg',
+                          //             colorFilter: ColorFilter.mode(
+                          //                 HMSThemeColors.onSurfaceHighEmphasis,
+                          //                 BlendMode.srcIn),
+                          //             fit: BoxFit.scaleDown,
+                          //             semanticsLabel: "settings_button",
+                          //           ));
+                          //     }),
                         ],
                       )
                     ],
