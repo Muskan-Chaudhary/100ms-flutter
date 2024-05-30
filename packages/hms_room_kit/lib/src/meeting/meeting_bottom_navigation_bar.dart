@@ -248,34 +248,39 @@ class _MeetingBottomNavigationBarState
                                 }),
 
                           ///Menu Button
-                          HMSEmbeddedButton(
-                            onTap: () async => {
-                              showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: HMSThemeColors.surfaceDim,
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(16),
-                                      topRight: Radius.circular(16)),
-                                ),
-                                context: context,
-                                builder: (ctx) => ChangeNotifierProvider.value(
-                                    value: context.read<MeetingStore>(),
-                                    child: const AppUtilitiesBottomSheet()),
-                              )
-                            },
-                            onColor: HMSThemeColors.backgroundDim,
-                            isActive: true,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: SvgPicture.asset(
-                                  "packages/hms_room_kit/lib/src/assets/icons/menu.svg",
-                                  colorFilter: ColorFilter.mode(
-                                      HMSThemeColors.onSurfaceHighEmphasis,
-                                      BlendMode.srcIn),
-                                  semanticsLabel: "more_button"),
+
+                          if (Constant.prebuiltOptions?.roomType ==
+                              "LiveStreamingRoom")
+                            HMSEmbeddedButton(
+                              onTap: () async => {
+                                showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: HMSThemeColors.surfaceDim,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(16),
+                                        topRight: Radius.circular(16)),
+                                  ),
+                                  context: context,
+                                  builder: (ctx) =>
+                                      ChangeNotifierProvider.value(
+                                          value: context.read<MeetingStore>(),
+                                          child:
+                                              const AppUtilitiesBottomSheet()),
+                                )
+                              },
+                              onColor: HMSThemeColors.backgroundDim,
+                              isActive: true,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SvgPicture.asset(
+                                    "packages/hms_room_kit/lib/src/assets/icons/menu.svg",
+                                    colorFilter: ColorFilter.mode(
+                                        HMSThemeColors.onSurfaceHighEmphasis,
+                                        BlendMode.srcIn),
+                                    semanticsLabel: "more_button"),
+                              ),
                             ),
-                          ),
                         ],
                       )
                     : const SizedBox(),
