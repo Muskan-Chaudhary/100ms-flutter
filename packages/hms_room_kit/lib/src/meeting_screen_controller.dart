@@ -67,7 +67,7 @@ class MeetingScreenController extends StatefulWidget {
       this.mirrorCamera = true,
       this.role,
       this.config,
-      this.currentAudioDeviceMode = HMSAudioDevice.AUTOMATIC,
+      this.currentAudioDeviceMode = HMSAudioDevice.EARPIECE,
       this.options,
       this.tokenData,
       required this.hmsSDKInteractor,
@@ -149,6 +149,7 @@ class _MeetingScreenControllerState extends State<MeetingScreenController> {
                     meetingStore.localPeer?.role.name,
                 builder: (_, data, __) {
                   setScreenRotation();
+                  print("reached here in 100ms");
                   return (HMSRoomLayout.roleLayoutData?.screens?.conferencing
                               ?.hlsLiveStreaming !=
                           null)
