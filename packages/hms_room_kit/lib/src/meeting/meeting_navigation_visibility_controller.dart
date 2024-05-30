@@ -16,14 +16,14 @@ class MeetingNavigationVisibilityController extends ChangeNotifier {
 
   ///This method toggles the visibility of the buttons
   void toggleControlsVisibility() {
-    showControls = !showControls;
+    // showControls = !showControls;
 
-    ///If the controls are now visible and
-    ///If the timer is not active, we start the timer
-    if (showControls && !_isTimerActive) {
-      startTimerToHideButtons();
-    }
-    notifyListeners();
+    // ///If the controls are now visible and
+    // ///If the timer is not active, we start the timer
+    // if (showControls && !_isTimerActive) {
+    //   startTimerToHideButtons();
+    // }
+    // notifyListeners();
   }
 
   ///This method starts a timer for 5 seconds and then hides the buttons
