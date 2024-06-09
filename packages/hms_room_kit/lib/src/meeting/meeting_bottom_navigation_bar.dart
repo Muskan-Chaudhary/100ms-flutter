@@ -249,40 +249,29 @@ class _MeetingBottomNavigationBarState
                                 }),
 
                           //Speaker Button
-                          if (Constant.prebuiltOptions?.roomType == "AudioRoom")
-                            Selector<MeetingStore,
-                                    Tuple2<HMSAudioDevice?, bool>>(
-                                selector: (_, meetingStore) => Tuple2(
-                                    meetingStore.currentAudioOutputDevice,
-                                    meetingStore.isSpeakerOn),
-                                builder: (_, data, __) {
-                                  return HMSEmbeddedButton(
-                                      onTap: () {
-                                        if (!data.item2) {
-                                          context
-                                              .read<MeetingStore>()
-                                              .switchAudioOutput(
-                                                  audioDevice: HMSAudioDevice
-                                                      .SPEAKER_PHONE);
-                                        } else {
-                                          context
-                                              .read<MeetingStore>()
-                                              .switchAudioOutput(
-                                                  audioDevice:
-                                                      HMSAudioDevice.EARPIECE);
-                                        }
-                                      },
-                                      onColor: HMSThemeColors.backgroundDim,
-                                      isActive: true,
-                                      child: SvgPicture.asset(
-                                        'packages/hms_room_kit/lib/src/assets/icons/${!data.item2 ? "speaker_state_off" : "speaker_state_on"}.svg',
-                                        colorFilter: ColorFilter.mode(
-                                            HMSThemeColors
-                                                .onSurfaceHighEmphasis,
-                                            BlendMode.srcIn),
-                                        fit: BoxFit.scaleDown,
-                                      ));
-                                }),
+                          // if (Constant.prebuiltOptions?.roomType == "AudioRoom")
+                          //   Selector<MeetingStore,
+                          //           Tuple2<HMSAudioDevice?, bool>>(
+                          //       selector: (_, meetingStore) => Tuple2(
+                          //           meetingStore.currentAudioOutputDevice,
+                          //           meetingStore.isSpeakerOn),
+                          //       builder: (_, data, __) {
+                          //         return HMSEmbeddedButton(
+                          //             onTap: () {
+                          //               if (!data.item2) {
+                          //               } else {}
+                          //             },
+                          //             onColor: HMSThemeColors.backgroundDim,
+                          //             isActive: true,
+                          //             child: SvgPicture.asset(
+                          //               'packages/hms_room_kit/lib/src/assets/icons/${!data.item2 ? "speaker_state_off" : "speaker_state_on"}.svg',
+                          //               colorFilter: ColorFilter.mode(
+                          //                   HMSThemeColors
+                          //                       .onSurfaceHighEmphasis,
+                          //                   BlendMode.srcIn),
+                          //               fit: BoxFit.scaleDown,
+                          //             ));
+                          //       }),
 
                           ///Menu Button
                           if (Constant.prebuiltOptions?.roomType ==
