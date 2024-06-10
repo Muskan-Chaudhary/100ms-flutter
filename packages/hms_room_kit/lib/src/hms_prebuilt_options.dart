@@ -35,6 +35,12 @@ class HMSPrebuiltOptions {
 
   final String? roomType;
 
+  ///This provides the img url of the user
+  final String? userImgUrl;
+
+  ///This sets whether it's a video call or audio call
+  final bool? isVideoCall;
+
   ///[HMSPrebuiltOptions] is a class that is used to pass the options to the prebuilt
   HMSPrebuiltOptions(
       {this.userName,
@@ -43,5 +49,7 @@ class HMSPrebuiltOptions {
       this.debugInfo = false,
       this.iOSScreenshareConfig,
       this.enableNoiseCancellation = false,
-      this.roomType});
+      this.roomType,
+      this.userImgUrl,
+      this.isVideoCall = true});
 }
