@@ -7,7 +7,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 ///Project imports
 import 'package:hms_room_kit/hms_room_kit.dart';
 import 'package:hms_room_kit/src/layout_api/hms_room_layout.dart' as roomlayout;
+import 'package:hms_room_kit/src/preview/preview_store.dart';
 import 'package:hms_room_kit/src/widgets/common_widgets/hms_subheading_text.dart';
+import 'package:provider/provider.dart';
 
 ///[HMSLeftRoomScreen] is the screen that is shown after a user leaves the room
 class HMSLeftRoomScreen extends StatelessWidget {
@@ -20,6 +22,7 @@ class HMSLeftRoomScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final previewStore = context.watch<PreviewStore>();
     return SafeArea(
       child: Scaffold(
         backgroundColor: HMSThemeColors.backgroundDim,
@@ -72,13 +75,18 @@ class HMSLeftRoomScreen extends StatelessWidget {
                     ///If the room end is called, and peer role type is conferencing the text is "Session ended"
                     ///If you leave the room, and peer role type is hlsViewer the text is "You left the stream"
                     ///If tyou leave the room, and peer role type is conferencing the text is "You left the meeting"
-                    text: (doesRoleHasStreamPermission ||
-                            roomlayout.HMSRoomLayout.peerType ==
-                                roomlayout.PeerRoleType.hlsViewer)
-                        ? "You left the stream"
-                        : isEndRoomCalled
-                            ? "Session ended"
-                            : "You left the meeting",
+                    text: ((Constant.prebuiltOptions?.roomType == 'AudioRoom' ||
+                                Constant.prebuiltOptions?.roomType ==
+                                    'VideoRoom') &&
+                            previewStore.peerCount == 0)
+                        ? "Consultant did not pick the call, please try again later"
+                        : (doesRoleHasStreamPermission ||
+                                roomlayout.HMSRoomLayout.peerType ==
+                                    roomlayout.PeerRoleType.hlsViewer)
+                            ? "You left the stream"
+                            : isEndRoomCalled
+                                ? "Session ended"
+                                : "You left the session",
                     textColor: HMSThemeColors.onSurfaceHighEmphasis,
                     fontSize: 24,
                     lineHeight: 32,
