@@ -14,13 +14,11 @@ import 'package:hms_room_kit/hms_room_kit.dart';
 import 'package:hms_room_kit/src/common/utility_components.dart';
 import 'package:hms_room_kit/src/preview/preview_bottom_button_section.dart';
 import 'package:hms_room_kit/src/preview/preview_header.dart';
-import 'package:hms_room_kit/src/preview/preview_join_button.dart';
 import 'package:hms_room_kit/src/preview/preview_network_indicator.dart';
 import 'package:hms_room_kit/src/widgets/common_widgets/hms_circular_avatar.dart';
 import 'package:hms_room_kit/src/widgets/common_widgets/hms_loader.dart';
 import 'package:hms_room_kit/src/widgets/hms_buttons/hms_back_button.dart';
 import 'package:hms_room_kit/src/preview/preview_store.dart';
-import 'package:hms_room_kit/src/widgets/common_widgets/hms_listenable_button.dart';
 
 ///This renders the Preview Screen
 class PreviewPage extends StatefulWidget {
@@ -220,106 +218,106 @@ class _PreviewPageState extends State<PreviewPage> {
                                           ///This renders the preview page bottom buttons
                                           PreviewBottomButtonSection(
                                               previewStore: previewStore),
-                                          const SizedBox(
-                                            height: 16,
-                                          ),
+                                          // const SizedBox(
+                                          //   height: 16,
+                                          // ),
 
                                           ///This renders the name text field and join button
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                bottom: 24.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                SizedBox(
-                                                  height: 48,
-                                                  width: width * 0.50,
-                                                  child: TextField(
-                                                    enabled: widget.name
-                                                        .trim()
-                                                        .isEmpty,
-                                                    cursorColor: HMSThemeColors
-                                                        .onSurfaceHighEmphasis,
-                                                    onTapOutside: (event) =>
-                                                        FocusManager.instance
-                                                            .primaryFocus
-                                                            ?.unfocus(),
-                                                    textInputAction:
-                                                        TextInputAction.done,
-                                                    textCapitalization:
-                                                        TextCapitalization
-                                                            .words,
-                                                    style: HMSTextStyle.setTextStyle(
-                                                        color: HMSThemeColors
-                                                            .onSurfaceHighEmphasis),
-                                                    controller: nameController,
-                                                    keyboardType:
-                                                        TextInputType.text,
-                                                    onChanged: (value) {
-                                                      setState(() {});
-                                                    },
-                                                    decoration: InputDecoration(
-                                                        contentPadding:
-                                                            const EdgeInsets.symmetric(
-                                                                vertical: 12,
-                                                                horizontal: 16),
-                                                        fillColor: HMSThemeColors
-                                                            .surfaceDefault,
-                                                        filled: true,
+                                          // Padding(
+                                          //   padding: const EdgeInsets.only(
+                                          //       bottom: 24.0),
+                                          //   child: Row(
+                                          //     mainAxisAlignment:
+                                          //         MainAxisAlignment
+                                          //             .spaceBetween,
+                                          //     children: [
+                                          //       SizedBox(
+                                          //         height: 48,
+                                          //         width: width * 0.50,
+                                          //         child: TextField(
+                                          //           enabled: widget.name
+                                          //               .trim()
+                                          //               .isEmpty,
+                                          //           cursorColor: HMSThemeColors
+                                          //               .onSurfaceHighEmphasis,
+                                          //           onTapOutside: (event) =>
+                                          //               FocusManager.instance
+                                          //                   .primaryFocus
+                                          //                   ?.unfocus(),
+                                          //           textInputAction:
+                                          //               TextInputAction.done,
+                                          //           textCapitalization:
+                                          //               TextCapitalization
+                                          //                   .words,
+                                          //           style: HMSTextStyle.setTextStyle(
+                                          //               color: HMSThemeColors
+                                          //                   .onSurfaceHighEmphasis),
+                                          //           controller: nameController,
+                                          //           keyboardType:
+                                          //               TextInputType.text,
+                                          //           onChanged: (value) {
+                                          //             setState(() {});
+                                          //           },
+                                          //           decoration: InputDecoration(
+                                          //               contentPadding:
+                                          //                   const EdgeInsets.symmetric(
+                                          //                       vertical: 12,
+                                          //                       horizontal: 16),
+                                          //               fillColor: HMSThemeColors
+                                          //                   .surfaceDefault,
+                                          //               filled: true,
 
-                                                        ///This renders the hint text
-                                                        hintText:
-                                                            'Enter Name...',
-                                                        hintStyle: HMSTextStyle.setTextStyle(
-                                                            color: HMSThemeColors
-                                                                .onSurfaceLowEmphasis,
-                                                            height: 1.5,
-                                                            fontSize: 16,
-                                                            letterSpacing: 0.5,
-                                                            fontWeight: FontWeight
-                                                                .w400),
-                                                        focusedBorder: OutlineInputBorder(
-                                                            borderSide: BorderSide(
-                                                                width: 2,
-                                                                color: HMSThemeColors
-                                                                    .primaryDefault),
-                                                            borderRadius:
-                                                                const BorderRadius.all(
-                                                                    Radius.circular(
-                                                                        8))),
-                                                        enabledBorder: const OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide.none,
-                                                            borderRadius:
-                                                                BorderRadius.all(Radius.circular(8))),
-                                                        border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8)))),
-                                                  ),
-                                                ),
-                                                HMSListenableButton(
-                                                  textController:
-                                                      nameController,
-                                                  width: width * 0.38,
-                                                  onPressed: () {
-                                                    if (nameController.text
-                                                        .trim()
-                                                        .isNotEmpty) {
-                                                      _navigateToMeeting(
-                                                          previewStore);
-                                                    }
-                                                  },
-                                                  childWidget:
-                                                      PreviewJoinButton(
-                                                    isEmpty: nameController.text
-                                                        .trim()
-                                                        .isEmpty,
-                                                    previewStore: previewStore,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
+                                          //               ///This renders the hint text
+                                          //               hintText:
+                                          //                   'Enter Name...',
+                                          //               hintStyle: HMSTextStyle.setTextStyle(
+                                          //                   color: HMSThemeColors
+                                          //                       .onSurfaceLowEmphasis,
+                                          //                   height: 1.5,
+                                          //                   fontSize: 16,
+                                          //                   letterSpacing: 0.5,
+                                          //                   fontWeight: FontWeight
+                                          //                       .w400),
+                                          //               focusedBorder: OutlineInputBorder(
+                                          //                   borderSide: BorderSide(
+                                          //                       width: 2,
+                                          //                       color: HMSThemeColors
+                                          //                           .primaryDefault),
+                                          //                   borderRadius:
+                                          //                       const BorderRadius.all(
+                                          //                           Radius.circular(
+                                          //                               8))),
+                                          //               enabledBorder: const OutlineInputBorder(
+                                          //                   borderSide:
+                                          //                       BorderSide.none,
+                                          //                   borderRadius:
+                                          //                       BorderRadius.all(Radius.circular(8))),
+                                          //               border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8)))),
+                                          //         ),
+                                          //       ),
+                                          //       HMSListenableButton(
+                                          //         textController:
+                                          //             nameController,
+                                          //         width: width * 0.38,
+                                          //         onPressed: () {
+                                          //           if (nameController.text
+                                          //               .trim()
+                                          //               .isNotEmpty) {
+                                          //             _navigateToMeeting(
+                                          //                 previewStore);
+                                          //           }
+                                          //         },
+                                          //         childWidget:
+                                          //             PreviewJoinButton(
+                                          //           isEmpty: nameController.text
+                                          //               .trim()
+                                          //               .isEmpty,
+                                          //           previewStore: previewStore,
+                                          //         ),
+                                          //       ),
+                                          //     ],
+                                          //   ),
+                                          // ),
                                         ],
                                       ),
                                     ),
