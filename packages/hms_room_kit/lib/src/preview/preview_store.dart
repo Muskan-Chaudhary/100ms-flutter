@@ -1,4 +1,5 @@
 //Dart imports
+import 'dart:async';
 import 'dart:developer';
 
 ///Package imports
@@ -51,6 +52,8 @@ class PreviewStore extends ChangeNotifier
 
   int peerCount = 0;
 
+  Timer? timer;
+
   bool isNoiseCancellationAvailable = false;
 
   bool isNoiseCancellationEnabled = false;
@@ -61,8 +64,21 @@ class PreviewStore extends ChangeNotifier
     notifyListeners();
   }
 
+  void fetchRemotePeers() {
+    timer = Timer.periodic(Duration(seconds: 1), (_) async {
+      List<HMSPeer>? remotePeers =
+          await hmsSDKInteractor.hmsSDK.getRemotePeers();
+      log("looking for peers ${remotePeers?.length}");
+      if (remotePeers?.isNotEmpty ?? false) {
+        peerCount = remotePeers!.length;
+        notifyListeners();
+      }
+    });
+  }
+
   @override
   void onPreview({required HMSRoom room, required List<HMSTrack> localTracks}) {
+    fetchRemotePeers();
     log("onPreview-> room: ${room.toString()}");
     this.room = room;
     checkNoiseCancellationAvailablility();
