@@ -55,30 +55,54 @@ class _PreviewPageState extends State<PreviewPage> {
     super.dispose();
   }
 
+  // ///[_navigateToMeeting] navigates to meeting from preview
+  // void _navigateToMeeting(PreviewStore previewStore) {
+  //   HMSRole? role = previewStore.peer?.role;
+  //   int? localPeerNetworkQuality = previewStore.networkQuality;
+  //   bool isRoomMute = previewStore.isRoomMute;
+  //   HMSAudioDevice currentAudioDeviceMode = previewStore.currentAudioDeviceMode;
+
+  //   if (nameController.text.trim().isEmpty) {
+  //     return;
+  //   }
+  //   previewStore.removePreviewListener();
+
+  //   Navigator.of(context).pushReplacement(MaterialPageRoute(
+  //       builder: (context) => MeetingScreenController(
+  //             role: role,
+  //             localPeerNetworkQuality: localPeerNetworkQuality,
+  //             user: nameController.text.trim(),
+  //             isRoomMute: isRoomMute,
+  //             currentAudioDeviceMode: currentAudioDeviceMode,
+  //             tokenData: widget.tokenData,
+  //             hmsSDKInteractor: previewStore.hmsSDKInteractor,
+  //             isNoiseCancellationEnabled:
+  //                 previewStore.isNoiseCancellationEnabled,
+  //           )));
+  // }
+
   ///[_navigateToMeeting] navigates to meeting from preview
   void _navigateToMeeting(PreviewStore previewStore) {
+    previewStore.timer?.cancel();
     HMSRole? role = previewStore.peer?.role;
     int? localPeerNetworkQuality = previewStore.networkQuality;
     bool isRoomMute = previewStore.isRoomMute;
     HMSAudioDevice currentAudioDeviceMode = previewStore.currentAudioDeviceMode;
 
-    if (nameController.text.trim().isEmpty) {
-      return;
-    }
     previewStore.removePreviewListener();
 
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => MeetingScreenController(
-              role: role,
-              localPeerNetworkQuality: localPeerNetworkQuality,
-              user: nameController.text.trim(),
-              isRoomMute: isRoomMute,
-              currentAudioDeviceMode: currentAudioDeviceMode,
-              tokenData: widget.tokenData,
-              hmsSDKInteractor: previewStore.hmsSDKInteractor,
-              isNoiseCancellationEnabled:
-                  previewStore.isNoiseCancellationEnabled,
-            )));
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => MeetingScreenController(
+                role: role,
+                localPeerNetworkQuality: localPeerNetworkQuality,
+                user: nameController.text.trim(),
+                isRoomMute: isRoomMute,
+                currentAudioDeviceMode: currentAudioDeviceMode,
+                tokenData: widget.tokenData,
+                hmsSDKInteractor: previewStore.hmsSDKInteractor,
+              )));
+    });
   }
 
   @override
