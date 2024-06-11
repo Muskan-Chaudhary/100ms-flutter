@@ -54,6 +54,10 @@ class PreviewStore extends ChangeNotifier
 
   Timer? timer;
 
+  Timer? dismissCallTimer;
+
+  int secondsPassed = 0;
+
   bool isNoiseCancellationAvailable = false;
 
   bool isNoiseCancellationEnabled = false;
@@ -76,10 +80,26 @@ class PreviewStore extends ChangeNotifier
     });
   }
 
+  void startTimer() {
+    const duration = Duration(seconds: 1);
+    dismissCallTimer = Timer.periodic(duration, (Timer t) {
+      secondsPassed++;
+      if (secondsPassed % 2 == 0) {
+        log("Notifying secondsPassed $secondsPassed");
+        notifyListeners();
+      }
+      // if (secondsPassed >= 30) {
+      //   log('30 seconds are over!');
+      //   timer!.cancel();
+      // }
+    });
+  }
+
   @override
   void onPreview({required HMSRoom room, required List<HMSTrack> localTracks}) {
     log("onPreview-> room: ${room.toString()}");
     fetchRemotePeers();
+    startTimer();
     this.room = room;
     checkNoiseCancellationAvailablility();
     for (HMSPeer each in room.peers!) {

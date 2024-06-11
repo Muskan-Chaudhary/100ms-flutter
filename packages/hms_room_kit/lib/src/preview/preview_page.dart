@@ -5,6 +5,7 @@ import 'dart:io';
 
 ///Package imports
 import 'package:flutter/material.dart';
+import 'package:hms_room_kit/src/widgets/common_widgets/hms_left_room_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:hmssdk_flutter/hmssdk_flutter.dart';
 
@@ -120,6 +121,15 @@ class _PreviewPageState extends State<PreviewPage> {
           builder: (_, error, __) {
             if (previewStore.peerCount > 0) {
               _navigateToMeeting(previewStore);
+            }
+            if (previewStore.secondsPassed > 35) {
+              previewStore.dismissCallTimer?.cancel();
+              previewStore.leave();
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => HMSLeftRoomScreen(
+                        isEndRoomCalled: true,
+                        doesRoleHasStreamPermission: false,
+                      )));
             }
             return Scaffold(
               resizeToAvoidBottomInset: false,
