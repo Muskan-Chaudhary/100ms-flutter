@@ -55,7 +55,7 @@ class HMSCallNotAnsweredScreen extends StatelessWidget {
                   HMSTitleText(
                     text: "Consultant is currently unavailable",
                     textColor: HMSThemeColors.onSurfaceHighEmphasis,
-                    fontSize: 24,
+                    fontSize: 16,
                     lineHeight: 32,
                   ),
                   const SizedBox(
