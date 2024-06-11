@@ -124,12 +124,20 @@ class _PreviewPageState extends State<PreviewPage> {
             }
             if (previewStore.secondsPassed > 35) {
               previewStore.dismissCallTimer?.cancel();
-              previewStore.leave();
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => HMSLeftRoomScreen(
-                        isEndRoomCalled: true,
-                        doesRoleHasStreamPermission: false,
-                      )));
+              // previewStore.leave();
+              // Navigator.of(context).pushReplacement(MaterialPageRoute(
+              //     builder: (context) => HMSLeftRoomScreen(
+              //           isEndRoomCalled: true,
+              //           doesRoleHasStreamPermission: false,
+              //         )));
+              previewStore.removePreviewListener();
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => HMSLeftRoomScreen(
+                          isEndRoomCalled: true,
+                          doesRoleHasStreamPermission: false,
+                        )));
+              });
             }
             return Scaffold(
               resizeToAvoidBottomInset: false,
