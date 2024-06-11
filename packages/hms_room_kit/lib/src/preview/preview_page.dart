@@ -5,6 +5,7 @@ import 'dart:io';
 
 ///Package imports
 import 'package:flutter/material.dart';
+import 'package:hms_room_kit/src/widgets/common_widgets/hms_call_not_answered.dart';
 import 'package:hms_room_kit/src/widgets/common_widgets/hms_left_room_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:hmssdk_flutter/hmssdk_flutter.dart';
@@ -124,19 +125,11 @@ class _PreviewPageState extends State<PreviewPage> {
             }
             if (previewStore.secondsPassed > 35) {
               previewStore.dismissCallTimer?.cancel();
-              // previewStore.leave();
-              // Navigator.of(context).pushReplacement(MaterialPageRoute(
-              //     builder: (context) => HMSLeftRoomScreen(
-              //           isEndRoomCalled: true,
-              //           doesRoleHasStreamPermission: false,
-              //         )));
+              previewStore.leave();
               previewStore.removePreviewListener();
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => HMSLeftRoomScreen(
-                          isEndRoomCalled: true,
-                          doesRoleHasStreamPermission: false,
-                        )));
+                    builder: (context) => HMSCallNotAnsweredScreen()));
               });
             }
             return Scaffold(
