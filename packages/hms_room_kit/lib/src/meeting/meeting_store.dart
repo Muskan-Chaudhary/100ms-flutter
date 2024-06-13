@@ -833,6 +833,7 @@ class MeetingStore extends ChangeNotifier
 
     if (Constant.prebuiltOptions?.roomType == "AudioRoom") {
       switchAudioOutput(audioDevice: HMSAudioDevice.EARPIECE);
+      switchAudioOutputUsingiOSUI();
     }
 
     hmsRoom = room;
