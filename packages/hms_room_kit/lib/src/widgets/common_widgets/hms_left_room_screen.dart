@@ -46,7 +46,7 @@ class HMSLeftRoomScreen extends StatelessWidget {
         MaterialPageRoute(
           builder: (context) => HelpScreen(),
         ),
-      );
+      )
                     },
                     child: CircleAvatar(
                       radius: 24,
