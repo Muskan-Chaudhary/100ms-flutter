@@ -13,6 +13,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  sniphat:
+    git:
+      url: git@github.com:Muskan-Chaudhary/sniphat.git
+      ref: guideus_july
+
 
   hmssdk_flutter: 1.10.3
   intl: ^0.18.0
