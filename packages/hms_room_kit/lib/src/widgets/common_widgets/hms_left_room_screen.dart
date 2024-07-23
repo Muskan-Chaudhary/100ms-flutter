@@ -1,6 +1,7 @@
 ///Package imports
 library;
 
+import 'package:GuideUs/screens/review_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -40,13 +41,19 @@ class HMSLeftRoomScreen extends StatelessWidget {
                       HMSThemeColors.resetLayoutColors(),
                       // Navigator.pop(context)
 
-      
-                            Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HelpScreen(),
-        ),
-      )
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ReviewWidget(
+                            type: Constant.prebuiltOptions?.roomType ==
+                                    "LiveStreamingRoom"
+                                ? "session"
+                                : "consult",
+                            ownerId: "d0b14217-2c0f-4617-8b3b-c45caf7d7d9e",
+                            eventId: "abc",
+                          ),
+                        ),
+                      )
                     },
                     child: CircleAvatar(
                       radius: 24,

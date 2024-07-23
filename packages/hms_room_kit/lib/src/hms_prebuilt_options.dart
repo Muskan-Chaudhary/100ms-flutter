@@ -35,6 +35,9 @@ class HMSPrebuiltOptions {
 
   final String? roomType;
 
+  final String? ownerId;
+  final String? eventId;
+
   ///This provides the img url of the user
   final String? userImgUrl;
 
@@ -50,6 +53,8 @@ class HMSPrebuiltOptions {
       this.iOSScreenshareConfig,
       this.enableNoiseCancellation = false,
       this.roomType,
+      this.eventId,
+      this.ownerId,
       this.userImgUrl,
       this.isVideoCall = true});
 }
