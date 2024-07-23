@@ -1,5 +1,7 @@
 library;
 
+import 'dart:html';
+
 ///Project imports
 import 'package:hms_room_kit/hms_room_kit.dart';
 
@@ -37,6 +39,7 @@ class HMSPrebuiltOptions {
 
   final String? ownerId;
   final String? eventId;
+  final bool? normalUser;
 
   ///This provides the img url of the user
   final String? userImgUrl;
@@ -55,6 +58,7 @@ class HMSPrebuiltOptions {
       this.roomType,
       this.eventId,
       this.ownerId,
+      this.normalUser = true,
       this.userImgUrl,
       this.isVideoCall = true});
 }

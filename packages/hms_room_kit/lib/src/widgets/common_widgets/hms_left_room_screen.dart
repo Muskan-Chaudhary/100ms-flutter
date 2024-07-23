@@ -39,21 +39,27 @@ class HMSLeftRoomScreen extends StatelessWidget {
                     onTap: () => {
                       ///Here we reset the layout colors and pop the leave screen
                       HMSThemeColors.resetLayoutColors(),
-                      // Navigator.pop(context)
 
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ReviewWidget(
-                            type: Constant.prebuiltOptions?.roomType ==
-                                    "LiveStreamingRoom"
-                                ? "session"
-                                : "consult",
-                            ownerId: "d0b14217-2c0f-4617-8b3b-c45caf7d7d9e",
-                            eventId: "abc",
-                          ),
-                        ),
-                      )
+                      if (Constant.prebuiltOptions?.normalUser ?? true)
+                        {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ReviewWidget(
+                                type: Constant.prebuiltOptions?.roomType ==
+                                        "LiveStreamingRoom"
+                                    ? "session"
+                                    : "consult",
+                                ownerId: Constant.prebuiltOptions?.ownerId ??
+                                    "Unknown",
+                                eventId: Constant.prebuiltOptions?.eventId ??
+                                    "Unknown",
+                              ),
+                            ),
+                          )
+                        }
+                      else
+                        {Navigator.pop(context)}
                     },
                     child: CircleAvatar(
                       radius: 24,
