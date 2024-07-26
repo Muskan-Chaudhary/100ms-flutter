@@ -1,7 +1,7 @@
 ///Package imports
 library;
 
-import 'package:GuideUs/screens/review_screen.dart';
+// import 'package:GuideUs/screens/review_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
