@@ -9,7 +9,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hms_room_kit/hms_room_kit.dart';
 import 'package:hms_room_kit/src/layout_api/hms_room_layout.dart' as roomlayout;
 import 'package:hms_room_kit/src/widgets/common_widgets/hms_subheading_text.dart';
-import 'package:GuideUs/screens/help/help_screen.dart';
 
 ///[HMSLeftRoomScreen] is the screen that is shown after a user leaves the room
 class HMSLeftRoomScreen extends StatelessWidget {
@@ -40,26 +39,28 @@ class HMSLeftRoomScreen extends StatelessWidget {
                       ///Here we reset the layout colors and pop the leave screen
                       HMSThemeColors.resetLayoutColors(),
 
-                      if (Constant.prebuiltOptions?.normalUser ?? true)
-                        {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ReviewWidget(
-                                type: Constant.prebuiltOptions?.roomType ==
-                                        "LiveStreamingRoom"
-                                    ? "session"
-                                    : "consult",
-                                ownerId: Constant.prebuiltOptions?.ownerId ??
-                                    "Unknown",
-                                eventId: Constant.prebuiltOptions?.eventId ??
-                                    "Unknown",
-                              ),
-                            ),
-                          )
-                        }
-                      else
-                        {Navigator.pop(context)}
+                      // if (Constant.prebuiltOptions?.normalUser ?? true)
+                      //   {
+                      //     Navigator.pushReplacement(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //         builder: (context) => ReviewWidget(
+                      //           type: Constant.prebuiltOptions?.roomType ==
+                      //                   "LiveStreamingRoom"
+                      //               ? "session"
+                      //               : "consult",
+                      //           ownerId: Constant.prebuiltOptions?.ownerId ??
+                      //               "Unknown",
+                      //           eventId: Constant.prebuiltOptions?.eventId ??
+                      //               "Unknown",
+                      //         ),
+                      //       ),
+                      //     )
+                      //   }
+                      // else
+                      //   {
+                      Navigator.pop(context)
+                      // }
                     },
                     child: CircleAvatar(
                       radius: 24,
