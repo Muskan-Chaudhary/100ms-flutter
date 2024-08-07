@@ -2,6 +2,7 @@
 library;
 
 // import 'package:GuideUs/screens/review_screen.dart';
+import 'package:GuideUs/screens/review_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -39,28 +40,26 @@ class HMSLeftRoomScreen extends StatelessWidget {
                       ///Here we reset the layout colors and pop the leave screen
                       HMSThemeColors.resetLayoutColors(),
 
-                      // if (Constant.prebuiltOptions?.normalUser ?? true)
-                      //   {
-                      //     Navigator.pushReplacement(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //         builder: (context) => ReviewWidget(
-                      //           type: Constant.prebuiltOptions?.roomType ==
-                      //                   "LiveStreamingRoom"
-                      //               ? "session"
-                      //               : "consult",
-                      //           ownerId: Constant.prebuiltOptions?.ownerId ??
-                      //               "Unknown",
-                      //           eventId: Constant.prebuiltOptions?.eventId ??
-                      //               "Unknown",
-                      //         ),
-                      //       ),
-                      //     )
-                      //   }
-                      // else
-                      //   {
-                      Navigator.pop(context)
-                      // }
+                      if (Constant.prebuiltOptions?.normalUser ?? true)
+                        {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ReviewWidget(
+                                type: Constant.prebuiltOptions?.roomType ==
+                                        "LiveStreamingRoom"
+                                    ? "session"
+                                    : "consult",
+                                ownerId: Constant.prebuiltOptions?.ownerId ??
+                                    "Unknown",
+                                eventId: Constant.prebuiltOptions?.eventId ??
+                                    "Unknown",
+                              ),
+                            ),
+                          )
+                        }
+                      else
+                        {Navigator.pop(context)}
                     },
                     child: CircleAvatar(
                       radius: 24,
