@@ -2,6 +2,8 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:GuideUs/screens/review_screen.dart';
+
 ///Package imports
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -93,11 +95,27 @@ class _MeetingPageState extends State<MeetingPage> {
           builder: (_, failureErrors, __) {
             if (failureErrors.item1) {
               WidgetsBinding.instance.addPostFrameCallback((_) {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => HMSLeftRoomScreen(
-                          isEndRoomCalled: failureErrors.item3,
-                          doesRoleHasStreamPermission: failureErrors.item4,
-                        )));
+                if (Constant.prebuiltOptions?.normalUser ?? true) {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ReviewWidget(
+                        type: Constant.prebuiltOptions?.roomType ==
+                                "LiveStreamingRoom"
+                            ? "session"
+                            : "consult",
+                        ownerId: Constant.prebuiltOptions?.ownerId ?? "Unknown",
+                        eventId: Constant.prebuiltOptions?.eventId ?? "Unknown",
+                      ),
+                    ),
+                  );
+                } else {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => HMSLeftRoomScreen(
+                            isEndRoomCalled: failureErrors.item3,
+                            doesRoleHasStreamPermission: failureErrors.item4,
+                          )));
+                }
               });
             }
             return Selector<MeetingStore, bool>(

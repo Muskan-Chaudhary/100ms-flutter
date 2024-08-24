@@ -42,21 +42,22 @@ class HMSLeftRoomScreen extends StatelessWidget {
 
                       if (Constant.prebuiltOptions?.normalUser ?? true)
                         {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ReviewWidget(
-                                type: Constant.prebuiltOptions?.roomType ==
-                                        "LiveStreamingRoom"
-                                    ? "session"
-                                    : "consult",
-                                ownerId: Constant.prebuiltOptions?.ownerId ??
-                                    "Unknown",
-                                eventId: Constant.prebuiltOptions?.eventId ??
-                                    "Unknown",
-                              ),
-                            ),
-                          )
+                          // Navigator.pushReplacement(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => ReviewWidget(
+                          //       type: Constant.prebuiltOptions?.roomType ==
+                          //               "LiveStreamingRoom"
+                          //           ? "session"
+                          //           : "consult",
+                          //       ownerId: Constant.prebuiltOptions?.ownerId ??
+                          //           "Unknown",
+                          //       eventId: Constant.prebuiltOptions?.eventId ??
+                          //           "Unknown",
+                          //     ),
+                          //   ),
+                          // )
+                          Navigator.pop(context)
                         }
                       else
                         {Navigator.pop(context)}
