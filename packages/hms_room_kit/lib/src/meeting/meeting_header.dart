@@ -174,12 +174,8 @@ class _MeetingHeaderState extends State<MeetingHeader> {
                           ///If the HLS streaming is started, we render the number of peers
                           ///else we render an empty Container
                           Selector<MeetingStore, Tuple2<bool, int>>(
-                              selector: (_, meetingStore) => Tuple2(
-                                  ((meetingStore.streamingType['hls'] ==
-                                          HMSStreamingState.started) ||
-                                      (meetingStore.streamingType['rtmp'] ==
-                                          HMSStreamingState.started)),
-                                  meetingStore.peersInRoom),
+                              selector: (_, meetingStore) =>
+                                  Tuple2((true), meetingStore.peersInRoom),
                               builder: (_, data, __) {
                                 return data.item1
                                     ? Container(
