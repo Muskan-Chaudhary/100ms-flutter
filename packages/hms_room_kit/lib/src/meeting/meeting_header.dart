@@ -84,17 +84,7 @@ class _MeetingHeaderState extends State<MeetingHeader> {
                           ///For hls streaming status we use the streamingType map from the [MeetingStore]
                           ///
                           ///If recording initialising state is true we show the loader
-                          Selector<MeetingStore, bool>(
-                              selector: (_, meetingStore) =>
-                                  (meetingStore.streamingType['hls'] ==
-                                          HMSStreamingState.started ||
-                                      meetingStore.streamingType['rtmp'] ==
-                                          HMSStreamingState.started),
-                              builder: (_, isHLSStarted, __) {
-                                return isHLSStarted
-                                    ? const LiveBadge()
-                                    : Container();
-                              }),
+                          const LiveBadge(),
                           const SizedBox(
                             width: 8,
                           ),
