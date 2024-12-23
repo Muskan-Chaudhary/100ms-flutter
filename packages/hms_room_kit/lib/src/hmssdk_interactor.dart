@@ -32,8 +32,8 @@ class HMSSDKInteractor {
   /// [isNoiseCancellationEnabled] - By default it's false and is used to enable noise cancellation in the call
   HMSSDKInteractor(
       {HMSIOSScreenshareConfig? iOSScreenshareConfig,
-      bool joinWithMutedAudio = false,
-      bool joinWithMutedVideo = false,
+      bool joinWithMutedAudio = true,
+      bool joinWithMutedVideo = true,
       bool isSoftwareDecoderDisabled = true,
       bool isAudioMixerDisabled = true,
       HMSAudioMode audioMode = HMSAudioMode.VOICE,

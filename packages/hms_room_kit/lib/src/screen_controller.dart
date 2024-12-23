@@ -141,8 +141,8 @@ class _ScreenControllerState extends State<ScreenController> {
 
     _hmsSDKInteractor = HMSSDKInteractor(
         iOSScreenshareConfig: widget.options?.iOSScreenshareConfig,
-        joinWithMutedAudio: false,
-        joinWithMutedVideo: false,
+        joinWithMutedAudio: true,
+        joinWithMutedVideo: true,
         isSoftwareDecoderDisabled: AppDebugConfig.isSoftwareDecoderDisabled,
         isAudioMixerDisabled: AppDebugConfig.isAudioMixerDisabled,
         isNoiseCancellationEnabled:
