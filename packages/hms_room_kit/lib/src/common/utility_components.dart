@@ -1079,17 +1079,23 @@ class UtilityComponents {
         child: const HMSReconnectionToast());
   }
 
-  ///This returns the error toasts whenever the error is terminal
+  // ///This returns the error toasts whenever the error is terminal
+  // static Widget showFailureError(
+  //     HMSException exception, BuildContext context, Function onLeavePressed) {
+  //   return Container(
+  //       height: MediaQuery.of(context).size.height,
+  //       color: HMSThemeColors.backgroundDefault.withOpacity(0.5),
+  //       child: HMSDisconnectedToast(
+  //         errorDescription:
+  //             "CODE: ${exception.code?.errorCode}, ${exception.description}",
+  //         onLeavePressed: onLeavePressed,
+  //       ));
+  // }
+
   static Widget showFailureError(
       HMSException exception, BuildContext context, Function onLeavePressed) {
-    return Container(
-        height: MediaQuery.of(context).size.height,
-        color: HMSThemeColors.backgroundDefault.withOpacity(0.5),
-        child: HMSDisconnectedToast(
-          errorDescription:
-              "CODE: ${exception.code?.errorCode}, ${exception.description}",
-          onLeavePressed: onLeavePressed,
-        ));
+    print("CODE: ${exception.code?.errorCode}, ${exception.description}");
+    return Container(); // Return an empty container or another placeholder widget.
   }
 
   static onEndStream(
