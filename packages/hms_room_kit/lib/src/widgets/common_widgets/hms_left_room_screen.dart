@@ -60,7 +60,11 @@ class HMSLeftRoomScreen extends StatelessWidget {
                           Navigator.pop(context)
                         }
                       else
-                        {Navigator.pop(context)}
+                        {
+                          Navigator.pop(context),
+                          if (Navigator.canPop(context))
+                            {Navigator.pop(context)}
+                        }
                     },
                     child: CircleAvatar(
                       radius: 24,
